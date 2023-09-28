@@ -107,8 +107,8 @@ php artisan serve
 
 ## Screenshots
 
-<a href="https://github.com/kareemaladawy/Laravel-Ecommerce/issues/1">Website Screenshots</a> <br>
-<a href="https://github.com/kareemaladawy/Laravel-Ecommerce/issues/2">Admin Dashboard Screenshots</a>
+<a href="https://github.com/kareemaladawy/laravel-ecommerce-shop/issues/1">Website Screenshots</a> <br>
+<a href="https://github.com/kareemaladawy/laravel-ecommerce-shop/issues/2">Admin Dashboard Screenshots</a>
 
 ## Authors
 
