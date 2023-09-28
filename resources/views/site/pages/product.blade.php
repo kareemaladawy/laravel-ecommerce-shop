@@ -126,31 +126,8 @@
                                 <article class="p-5">
                                     <h3 class="title mb-3">{{ $product->name }}
                                         <br>
-                                        <div class="rating-wrap d-inline">
-                                            @php
-                                                $ratings_count = $product->ratings->count();
-                                                if ($ratings_count > 0) {
-                                                    $ratings_sum = $product->ratings->sum('star_rating');
-                                                    $avg_rating = round($ratings_sum / $ratings_count, 1);
-                                                    $stars_width = ($avg_rating / 5) * 100;
-                                                } else {
-                                                    $stars_width = 0;
-                                                }
-                                            @endphp
-                                            <ul class="rating-stars">
-                                                <li style="width:{{ $stars_width }}%" class="stars-active">
-                                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                        class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                            <small>({{ $ratings_count }})</small>
-                                        </div> &nbsp;
+                                        @livewire('product-rating-wrap', ['product' => $product, 'inline' => true])
+                                        &nbsp;
                                         @if ($product->offer?->discount_percentage)
                                             <span
                                                 class="badge badge-success mt-3 inline">{{ $product->offer?->discount_percentage . '% ' . __('Discount') }}
