@@ -10,11 +10,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    @if (Session::has('payment-cancelled'))
-                        <p class="alert alert-danger">{{ Session::get('payment-cancelled') }}</p>
-                    @endif
                     @if (Session::has('message'))
-                        <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                        <p class="alert alert-warning">{{ Session::get('message') }}</p>
                     @endif
                 </div>
             </div>

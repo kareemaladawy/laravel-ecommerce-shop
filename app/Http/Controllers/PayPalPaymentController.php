@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
 
 
@@ -54,26 +55,26 @@ class PayPalPaymentController extends Controller
         $response = $provider->getExpressCheckoutDetails($request->token);
 
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-            $order = Order::where('number', $response['INVNUM'])->first();
-            $order->update([
-                'status' => OrderStatus::PROCESSING->value,
-                'payment_status' => PaymentStatus::COMPLETED->value,
-                'payment_method' => 'PayPal',
-                'currency' => $response['CURRENCYCODE']
-            ]);
+            DB::transaction(function () use ($response) {
+                $order = Order::where('number', $response['INVNUM'])->first();
+                $order->update([
+                    'status' => OrderStatus::PROCESSING->value,
+                    'payment_status' => PaymentStatus::COMPLETED->value,
+                    'payment_method' => 'PayPal',
+                    'currency' => $response['CURRENCYCODE']
+                ]);
 
-            \Cart::session(auth()->id())->clear();
+                \Cart::session(auth()->id())->clear();
+            });
 
-            return redirect()->to(route('account.orders'))->with('INVNUM', $response['INVNUM']);
+            return to_route('account.orders')->with('INVNUM', $response['INVNUM']);
         }
 
-        return redirect()->route('checkout.index')
-            ->with('payment-error', 'An error occured when handling the payment. Please try again later');
+        return to_route('checkout.index')->with('message', 'An error occured during payment.');
     }
 
-    public function cancelPayment(Request $request)
+    public function cancelPayment()
     {
-        return redirect()->route('checkout.index')
-            ->with('payment-cancelled', 'Payment got cancelled');
+        return to_route('checkout.index')->with('message', 'Payment got cancelled.');
     }
 }

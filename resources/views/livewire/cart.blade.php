@@ -8,11 +8,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    @if (Session::has('checkout_error'))
-                        <p class="alert alert-warning">{{ __(Session::get('checkout_error')) }}</p>
+                    @if (Session::has('empty_cart_warning'))
+                        <p class="alert alert-warning">{{ __(Session::get('empty_cart_warning')) }}</p>
                     @endif
-                    @if (Session::has('payment_type_error'))
-                        <p class="alert alert-danger">{{ __(Session::get('payment_type_error')) }}</p>
+                    @if (Session::has('payment_type_warning'))
+                        <p class="alert alert-danger">{{ __(Session::get('payment_type_warning')) }}</p>
                     @endif
                 </div>
             </div>

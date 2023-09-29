@@ -98,7 +98,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('checkout/response', function () {
     \Cart::session(auth()->id())->clear();
-    return redirect()->to(route('account.orders'));
+    return to_route('account.orders');
 });
 
 

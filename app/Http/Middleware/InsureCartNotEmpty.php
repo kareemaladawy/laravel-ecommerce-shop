@@ -17,7 +17,7 @@ class InsureCartNotEmpty
     public function handle(Request $request, Closure $next): Response
     {
         if (\Cart::session(auth()->id())->isEmpty()) {
-            return redirect()->route('cart.index')->with('checkout_error', 'Cannot checkout with an empty cart');
+            return redirect()->route('cart.index')->with('empty_cart_warning', 'Cannot checkout with an empty cart');
         }
 
         return $next($request);

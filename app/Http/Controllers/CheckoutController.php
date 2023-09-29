@@ -19,7 +19,7 @@ class CheckoutController extends Controller
         } else if ($request->query('payment_type') == 'card') {
             return view('site.pages.paymob_checkout');
         } else {
-            return back()->with('payment_type_error', 'payment type specified is not available at the moment.');
+            return back()->with('payment_type_warning', 'payment type specified is not available at the moment.');
         }
     }
 

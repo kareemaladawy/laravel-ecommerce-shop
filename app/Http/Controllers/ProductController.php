@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function show(Product $product)
     {
-        $attributes = Attribute::all();
+        $attributes = Attribute::select(['id', 'name'])->get();
 
         $product->load(['attributes' => function ($query) {
             $query->orderBy('price', 'asc');
