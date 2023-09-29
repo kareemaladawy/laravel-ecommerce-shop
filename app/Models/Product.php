@@ -45,19 +45,6 @@ class Product extends Model
         });
     }
 
-    public static function boot()
-    {
-        parent::boot();
-
-        static::updated(function ($item) {
-            if ($item->qty == 0) {
-                $item->update([
-                    'active' => false
-                ]);
-            }
-        });
-    }
-
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;
