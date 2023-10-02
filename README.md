@@ -66,13 +66,14 @@ These instructions will get you a copy of the project up and running on your loc
 -   Composer dependency manager
 -   PHP 8+
 -   Laravel 10.18+
+-   Livewire 3
 
 ### Installation
 
 1- Clone the project
 
 ```
-git clone https://github.com/kareemaladawy/Laravel-Ecommerce.git
+git clone https://github.com/kareemaladawy/laravel-ecommerce-shop.git
 ```
 
 2- Install the dependencies
